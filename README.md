@@ -1,1 +1,1 @@
-# this is backend project developed with javascript
+# This is backend project developed with javascript
