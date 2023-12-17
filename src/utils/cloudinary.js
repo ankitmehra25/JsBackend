@@ -9,19 +9,19 @@ cloudinary.config({
 
 const uploadOnCloudinary = async localFilePath => {
   try {
-    // Check if file exists else throw error
+        // Check if file exists else throw error
     if (!localFilePath) throw new Error("No file path provided");
     // Upload file on cloudinary
     const res = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
     // file has been uploaded
-    console.log("File is upload on:", (await res).url);
+    fs.unlinkSync(localFilePath);
+    // console.log("File is upload on:", await res.url);
     return res;
   } catch (err) {
     // remove locally saved file as the upload failed
-    fs.unlinkSync(localFilePath);
-    console.error(err);
+    console.error("upload to cloudinary failed", err);
   }
 };
 
